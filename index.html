@@ -1,11 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Analysis</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Health Analysis Dashboard</title>
+    <meta name="description" content="Healthcare census analysis dashboard" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header" role="banner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div class="title">Health Analysis</div>
+            <div class="subtitle">Census insights &amp; population health</div>
+          </div>
+        </div>
+        <nav style="display:flex;gap:12px;align-items:center">
+          <a href="./index.html" id="home">Home</a>
+          <a href="./health_contact.html" id="contact">Contact Us</a>
+        </nav>
+        <div class="controls">
+          <input id="conditionInput" class="input" type="search" placeholder="Search condition or region" aria-label="Search" />
+          <button id="btnSearch" class="btn">Search</button>
+        </div>
+      </header>
+
+      <div class="dashboard">
+        <aside class="sidebar" role="complementary" aria-label="Sidebar">
+          <nav aria-label="Main navigation">
+            <div class="nav-item">Overview</div>
+            <div class="nav-item">Trends</div>
+            <div class="nav-item">Demographics</div>
+            <div class="nav-item">Export</div>
+          </nav>
+
+          <div style="height:12px"></div>
+
+          <section class="card" aria-labelledby="formTitle">
+            <h3 id="formTitle">Add Patient</h3>
+            <form id="analysisForm" class="analysisForm">
+              <label for="name">Name</label>
+              <input id="name" class="input" type="text" />
+
+              <label for="age" class="small">Age</label>
+              <input id="age" class="input" type="number" />
+
+              <label class="small">Gender</label>
+              <div style="display:flex;gap:8px;margin-bottom:8px">
+                <label for="male"><input id="male" type="radio" name="gender" value="Male" /> Male</label>
+                <label for="female"><input id="female" type="radio" name="gender" value="Female" /> Female</label>
+              </div>
+
+              <label for="condition" class="small">Condition</label>
+              <select id="condition" class="input">
+                <option value="">Select condition</option>
+                <option>Diabetes</option>
+                <option>Thyroid</option>
+                <option>High Blood Pressure</option>
+              </select>
+
+              <div style="margin-top:12px;display:flex;gap:8px">
+                <button id="addPatient" type="button" class="btn">Add Patient</button>
+                <button type="reset" class="btn ghost">Clear</button>
+              </div>
+
+              <h2>Analysis Report</h2>
+              <div id="report"></div>
+            </form>
+          </section>
+        </aside>
+
+        <main class="main" role="main">
+          <section class="card stats" aria-label="Key performance indicators">
+            <div class="kpi-grid">
+              <div class="stat card">
+                <div class="label">Total Patients</div>
+                <div class="value">12,482</div>
+              </div>
+              <div class="stat card">
+                <div class="label">Conditions Tracked</div>
+                <div class="value">24</div>
+              </div>
+              <div class="stat card">
+                <div class="label">At-risk %</div>
+                <div class="value">18.6%</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <h3>Trends</h3>
+            <div class="chart" aria-hidden="false">
+              <canvas id="trendChart" width="800" height="320"></canvas>
+            </div>
+          </section>
+
+          <section style="display:grid;grid-template-columns:1fr 420px;gap:16px;align-items:start">
+            <div class="card">
+              <h3>Condition Breakdown</h3>
+              <div class="chart">
+                <canvas id="breakdownChart" width="600" height="240"></canvas>
+              </div>
+            </div>
+
+            <div class="card table-wrap">
+              <h3>Recent Entries</h3>
+              <table class="data-table" role="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Condition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Maria Gomez</td>
+                    <td>54</td>
+                    <td>F</td>
+                    <td>Diabetes</td>
+                  </tr>
+                  <tr>
+                    <td>John Doe</td>
+                    <td>63</td>
+                    <td>M</td>
+                    <td>Hypertension</td>
+                  </tr>
+                  <tr>
+                    <td>Aisha Khan</td>
+                    <td>29</td>
+                    <td>F</td>
+                    <td>Thyroid</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <div class="searchCondition">
+        <div id="result"></div>
+      </div>
+
+      <footer style="margin-top:18px;text-align:center;color:var(--muted)">© 2026 Health Census</footer>
+    </div>
+
+    <script src="health_analysis.js"></script>
+  </body>
 </html>

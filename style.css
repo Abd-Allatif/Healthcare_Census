@@ -1,0 +1,151 @@
+:root{
+	--bg:#f6fbff;
+	--surface:#ffffff;
+	--card:#ffffff;
+	--muted:#6b7280;
+	--primary:#0ea5a4; /* teal */
+	--accent:#2563eb;  /* blue */
+	--success:#10b981;
+	--danger:#ef4444;
+	--glass:rgba(255,255,255,0.6);
+	--text:#0f172a;
+	--radius:12px;
+	--shadow:0 6px 18px rgba(15,23,42,0.08);
+	--mono: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+/* Reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family:var(--mono);
+	background:linear-gradient(180deg,#f8fbff 0%,var(--bg) 100%);
+	color:var(--text);
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	line-height:1.4;
+}
+
+/* Layout container */
+.container{
+	max-width:1200px;
+	margin:6px auto;
+	padding:24px;
+}
+
+/* Header */
+.header{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:16px;
+	margin-bottom:20px;
+}
+.brand{
+	display:flex;
+	align-items:center;
+	gap:12px;
+}
+.logo{
+	width:48px;height:48px;border-radius:10px;
+	background:linear-gradient(135deg,var(--primary),var(--accent));
+	box-shadow:var(--shadow);
+}
+.title{font-size:1.25rem;font-weight:700}
+.subtitle{font-size:0.9rem;color:var(--muted)}
+
+/* Dashboard grid */
+.dashboard{
+	display:grid;
+	grid-template-columns:280px 1fr;
+	gap:24px;
+	align-items:start;
+}
+
+/* Sidebar */
+.sidebar{
+	background:var(--surface);
+	border-radius:var(--radius);
+	padding:16px;
+	box-shadow:var(--shadow);
+}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;color:var(--muted);cursor:pointer}
+.nav-item:hover{background:linear-gradient(90deg,rgba(14,165,164,0.06),transparent);color:var(--text)}
+
+/* Main content */
+.main{
+	display:flex;flex-direction:column;gap:20px;
+}
+
+/* Cards */
+.card{
+	background:var(--card);
+	border-radius:12px;
+	padding:18px;
+	box-shadow:var(--shadow);
+}
+.stats{
+	display:flex;gap:16px;flex-wrap:wrap;
+}
+.stat{flex:1;min-width:160px}
+.stat .label{font-size:0.85rem;color:var(--muted)}
+.stat .value{font-size:1.6rem;font-weight:700;margin-top:6px}
+
+/* Chart container */
+.chart{
+	height:320px;border-radius:10px;padding:12px;background:linear-gradient(180deg,rgba(37,99,235,0.04),transparent);
+	display:flex;align-items:center;justify-content:center;overflow:hidden
+}
+
+/* Data table */
+.table-wrap{overflow:auto}
+table.data-table{width:100%;border-collapse:collapse;font-size:0.95rem}
+table.data-table thead th{position:sticky;top:0;background:rgba(255,255,255,0.9);text-align:left;padding:12px;border-bottom:1px solid #eef2f7}
+table.data-table tbody td{padding:12px;border-bottom:1px solid #f1f5f9}
+table.data-table tbody tr:hover{background:rgba(14,165,164,0.03)}
+
+/* Cards list (small charts, KPIs) */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+
+/* Buttons & controls */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:0;background:var(--primary);color:#fff;font-weight:600;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--text)}
+.input{width:100%;padding:10px;border-radius:10px;border:1px solid #e6eef6;background:#fff}
+
+/* Responsive */
+@media (max-width:900px){
+	.dashboard{grid-template-columns:1fr}
+	.header{flex-direction:column;align-items:flex-start}
+	.container{padding:16px;margin:20px auto}
+	.chart{height:240px}
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion:reduce){*{animation:none;transition:none}}
+
+/* Utility helpers */
+.muted{color:var(--muted)}
+.small{font-size:0.85rem}
+.pill{padding:6px 10px;border-radius:999px;background:rgba(15,23,42,0.03);font-weight:600}
+
+/* Print styles */
+@media print{
+	body{background:transparent}
+	.header, .sidebar, .btn{display:none}
+	.container{margin:0;padding:0}
+	.card{box-shadow:none;border-radius:0}
+}
+
+/* Minor visual polish */
+.legend{display:flex;gap:8px;align-items:center}
+.legend .dot{width:10px;height:10px;border-radius:50%}
+
+/* High-contrast tweaks */
+@media (prefers-contrast:more){
+	:root{--shadow:none}
+	body{background:#fff}
+}
+
+/* End of stylesheet */
+
